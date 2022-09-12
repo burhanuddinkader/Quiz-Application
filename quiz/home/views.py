@@ -1,6 +1,6 @@
-from http.client import HTTPResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
 def home(request):
-    return HTTPResponse("Hello my name is Bk")
+    return HttpResponse("Hello my name is Bk")
