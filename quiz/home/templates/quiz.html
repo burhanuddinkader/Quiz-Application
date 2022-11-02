@@ -19,7 +19,7 @@
         <hr>
         <p>[[question.question]]</p>
         <div class="form-check" v-for="answere in question.answere">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <input @change="checkAnswer($event, question.uid)" :value="answere.answere" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
           <label class="form-check-label" for="flexCheckDefault">
             [[answere.answere]]
           </label>
@@ -53,6 +53,27 @@
             console.log(result)
             _this.questions = result.data;
           })
+        },
+        checkAnswer(event,uid){
+
+          this.questions.map(question =>{
+            console.log(question.answere)
+            answere=question.answere
+            for(var i=0;i<answere.length;i++){
+              if(answere[i].answere == event.target.value){
+                if(answere[i].is_correct){
+                  alert("Your answere is correct")
+                }
+                else{
+                  alert("Your answere is incorrect")
+                }
+              }
+            }
+          })
+
+
+
+          console.log(event.target.value,uid)
         }
       },
       created(){
