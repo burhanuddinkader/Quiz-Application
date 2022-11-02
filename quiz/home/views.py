@@ -14,12 +14,14 @@ def home(request):
     return render(request,'home.html',context)
 
 def quiz(request):
-    return render(request,'quiz.html')
+    context={'category':request.GET.get('category')}
+    return render(request,'quiz.html',context)
 
 def get_quiz(request):
     try:
         question_objs =Question.objects.all()
         data=[]
+
 
         if request.GET.get('category'):
             question_objs=question_objs.filter(category__category_name__icontains=request.GET.get('category'))
